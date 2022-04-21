@@ -53,3 +53,11 @@ class FoodService:
             Food.objects.get(id=id).image.delete(save=True)
         except Food.DoesNotExist:
             pass
+
+    @staticmethod
+    def get_food_by_id(id):
+        try:
+            return Food.objects.get(pk=id)
+        except Food.DoesNotExist:
+            return None
+

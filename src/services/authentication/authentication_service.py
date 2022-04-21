@@ -96,4 +96,12 @@ class UserService:
         user.set_password(password)
         user.save()
 
+    @staticmethod
+    def get_user_by_id(id):
+        try:
+            User.objects.get(pk=id)
+        except User.DoesNotExist:
+            return None
+
+
 
