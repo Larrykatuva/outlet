@@ -5,8 +5,14 @@ from django.db.models.query import QuerySet
 class FavouriteService:
 
     @staticmethod
-    def add_to_favourite(user: User, food: Food) -> QuerySet[Favourite]:
-        return Favourite.objects.create(food=food, user=user)
+    def add_to_favourite(
+            user: User,
+            food: Food
+    ) -> QuerySet[Favourite]:
+        return Favourite.objects.create(
+            food=food,
+            user=user
+        )
 
     @staticmethod
     def get_all_favourite_items() -> QuerySet[Favourite]:

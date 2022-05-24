@@ -1,14 +1,17 @@
 from rest_framework.test import APITestCase
 from django.urls import reverse
-from src.models import User, Code
+from src.models import User
 
 
 class TestSetup(APITestCase):
     def setUp(self):
         self.login_url = reverse('login')
-        self.profile_url = reverse('profile')
-        self.profiles_url = reverse('profiles')
-        self.login_url = reverse('login')
+        self.create_outlet = reverse('create-outlet')
+        self.list_outlets = reverse('list-outlets')
+        self.create_food = reverse('create-food')
+        self.list_foods = reverse('list-foods')
+        self.create_rating = reverse('create-rating')
+        self.create_comment = reverse('create-comment')
 
         self.user = User.objects.create_user(
             username="larry",

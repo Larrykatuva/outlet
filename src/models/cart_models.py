@@ -8,6 +8,7 @@ class Cart(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     user = models.ForeignKey(User, to_field='id', on_delete=CASCADE)
     food = models.ForeignKey(Food, to_field='id', on_delete=CASCADE)
+    quantity = models.IntegerField(null=True)
     created_at = models.DateTimeField(auto_now_add=True, null=True)
     updated_at = models.DateTimeField(auto_now=True, null=True)
 

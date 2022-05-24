@@ -5,10 +5,19 @@ from rest_framework import serializers
 
 
 class CartSerializer(serializers.ModelSerializer):
+    quantity = serializers.FloatField(required=True, min_value=1)
 
     class Meta:
         model = Cart
-        fields = ['food']
+        fields = ['food', 'quantity']
+
+
+class UpdateCartSerializer(serializers.ModelSerializer):
+    quantity = serializers.FloatField(required=True, min_value=1)
+
+    class Meta:
+        model = Cart
+        fields = ['quantity']
 
 
 class ReadOnlyCartSerializer(serializers.ModelSerializer):
@@ -17,7 +26,7 @@ class ReadOnlyCartSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Cart
-        fields = ['id', 'created_at', 'updated_at', 'user', 'food']
+        fields = ['id', 'quantity', 'created_at', 'updated_at', 'user', 'food']
 
 
 class FavouriteSerializer(serializers.ModelSerializer):

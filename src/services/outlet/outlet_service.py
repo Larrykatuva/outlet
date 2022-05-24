@@ -23,6 +23,8 @@ class OutletService:
     @staticmethod
     def delete_outlet_logo(id: uuid) -> None:
         try:
-            Outlet.objects.get(id=id).image.delete(save=True)
+            Outlet.objects.get(
+                id=id
+            ).image.delete(save=True)
         except Outlet.DoesNotExist:
             pass

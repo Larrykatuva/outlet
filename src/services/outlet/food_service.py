@@ -7,14 +7,22 @@ class FoodService:
 
     @staticmethod
     def create_food(kwargs: dict) -> Food:
-        return Food.objects.create(likes=0, rating=0, **kwargs)
+        return Food.objects.create(
+            likes=0,
+            rating=0,
+            **kwargs
+        )
 
     @staticmethod
     def get_all_foods() -> QuerySet[Food]:
         return Food.objects.all().prefetch_related('outlet')
 
     @staticmethod
-    def add_food_rating(user: User, value: int, food: uuid) -> Star:
+    def add_food_rating(
+            user: User,
+            value: int,
+            food: uuid
+    ) -> Star:
         current_star = Star.objects.filter(food=food).count()
         rate_value = value
         if current_star > 0:
@@ -28,12 +36,24 @@ class FoodService:
         Food.objects.filter(id=food).update(rating=rate_value)
         user = User.objects.get(id=user)
         food = Food.objects.get(id=food)
-        return Star.objects.create(user=user, food=food, value=value)
+        return Star.objects.create(
+            user=user,
+            food=food,
+            value=value
+        )
 
     @staticmethod
-    def create_food_comment(user: User, desc: str, food: Food) -> Comment:
+    def create_food_comment(
+            user: User,
+            desc: str,
+            food: Food
+    ) -> Comment:
         food = Food.objects.get(id=food)
-        return Comment.objects.create(user=user, description=desc, food=food)
+        return Comment.objects.create(
+            user=user,
+            description=desc,
+            food=food
+        )
 
     @staticmethod
     def get_food_ratings(food: Food) -> QuerySet[Food]:

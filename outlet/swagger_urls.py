@@ -3,15 +3,13 @@ from drf_yasg.views import get_schema_view
 from rest_framework import permissions
 from django.urls import path
 from drf_yasg.generators import OpenAPISchemaGenerator
-from outlet.settings import (
-    MODE
-)
+from outlet.settings.payment import MODE
 
 
 class CustomOpenAPISchemaGenerator(OpenAPISchemaGenerator):
     def get_schema(self, *args, **kwargs):
         schema = super().get_schema(*args, **kwargs)
-        schema.basePath = '/sms-api/'
+        schema.basePath = '/api/'
         return schema
 
 
